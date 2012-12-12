@@ -4,3 +4,10 @@
 # for all configuration options.
 web:
   context: "/"
+
+queues:
+  /queues/urls_queue:
+
+topics:
+  /topics/terms_topic:
+
