@@ -23,4 +23,3 @@ services:
 
 messaging:
   /queues/urls: Poorsmatic::UrlScrapper
-  /topics/terms: Poorsmatic::TwitterService

@@ -2,7 +2,7 @@ require 'twitter4j4r'
 require 'twitter-text'
 
 module Poorsmatic
-  class TwitterService < TorqueBox::Messaging::MessageProcessor
+  class TwitterService
     # This will let us fetch the queue and topic later
     include TorqueBox::Injectors
     # We'll use it to extract the URLs from the tweet
@@ -11,6 +11,7 @@ module Poorsmatic
     def initialize(options = {})
       @terms = []
       @credentials = options['credentials']
+      @terms_topic = fetch('/topics/terms')
 
       # Initialize logging
       @log = TorqueBox::Logger.new(Poorsmatic::TwitterService)
@@ -31,9 +32,13 @@ module Poorsmatic
       end
 
       @log.info "Twitter client is ready"
+
+      Thread.new { receive }
     end
 
-    def on_message(terms)
+    def receive
+      terms = @terms_topic.receive
+
       @log.info "New terms arrived: #{terms.join(', ')}"
 
       stop
@@ -41,6 +46,8 @@ module Poorsmatic
       @terms = terms
 
       start
+
+      receive
     end
 
     def start
