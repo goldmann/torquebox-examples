@@ -39,3 +39,9 @@ gem 'jquery-rails'
 # gem 'debugger'
 
 gem "torquebox", "2.2.0"
+gem "torquebox-messaging", "2.2.0"
+
+gem "twitter4j4r", "0.1.1"
+gem "twitter-text", "1.5.0"
+gem "rest-client", "1.6.7"
+gem "nokogiri", "1.5.5"
