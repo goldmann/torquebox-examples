@@ -1,4 +1,13 @@
 Poorsmatic::Application.routes.draw do
+  resources :term_counts
+
+
+  resources :links
+
+
+  resources :terms
+
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
